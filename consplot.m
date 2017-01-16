@@ -69,7 +69,7 @@ end
 if isequal(size(options.ylim), [1, 2])
    ylim(options.ylim);
 end
-if options.legend
+if iscell(options.legend)
     legend(options.legend);
 end
 
