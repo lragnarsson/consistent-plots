@@ -35,18 +35,19 @@ load(['plot-configs/', lower(options.config)])
 
 % Calculate screen position for figure based on last figure position
 resolution = get(groot, 'Screensize');
+y_margin = 100;
 fig = get(groot,'CurrentFigure');
 if isempty(ishandle(fig)) % First fig
     x0 = 1;
-    y0 = resolution(4) - height;
+    y0 = resolution(4) - height - y_margin;
 else % Place next to last fig
     last_pos = get(fig, 'Position');
     if resolution(3) - last_pos(1) - last_pos(3) >= width % Place to left
-       x0 = last_pos(1) + last_pos(3) + 1;
-       y0 = last_pos(2) + 10;
-    elseif resolution(4) - last_pos(2) > height % Start on new row
+       x0 = last_pos(1) + last_pos(3);
+       y0 = last_pos(2);
+    elseif resolution(4) >= height % Start on new row
        x0 = 1;
-       y0 = last_pos(2) + last_pos(4);
+       y0 = last_pos(2) - last_pos(4);
     else % All empty, restart at the top right
        x0 = 1;
        y0 = 1;
