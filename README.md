@@ -6,17 +6,17 @@ plot configs for different purposes. Useful for writing reports
 with many figures.
 
 ### Example
-´´´Matlab
+```Matlab
 x = [0:0.1:10]';
 y = [3 * x.^2 - 4.*x + 2, ...
      2 * x.^2 + 5.*x - 5];
 
 foo = consfig(x, y);
 consplot(foo);
-´´´
+```
 
 ### Example 2
-´´´Matlab
+```Matlab
 x = [0:0.1:10]';
 y = [3 * x.^2 - 4.*x + 2, ...
      2 * x.^2 + 5.*x - 5];
@@ -28,4 +28,4 @@ foo = consfig(x, y, ...
              'xlabel', 'Raboof [Hz]');
 
 consplot(foo, 'config', 'some_config');
-´´´
+```
