@@ -16,7 +16,11 @@ classdef consfig
                  'xlim', [], ...
                  'ylim', [], ...
                  'legend', 0, ...
-                 'color_order', 'distinct_4');
+                 'color_order', 'distinct_4', ...
+                 'lineWidth', 1, ...
+                 'xticks', 'auto', ...
+                 'yticks', 'auto', ...
+                 'stemLines', []);
             option_names = fieldnames(options);
             n_args = length(varargin);
             if mod(n_args, 2)
@@ -24,11 +28,11 @@ classdef consfig
             end
 
             for pair = reshape(varargin, 2, [])
-               i_name = lower(pair{1});   
+               i_name = pair{1};   
                if any(strcmp(i_name, option_names))
                   options.(i_name) = pair{2};
                else
-                  error('%s is not a recognized parameter name',i_name);
+                  error('%s is not a recognized parameter name', i_name);
                end
             end
             obj.options = options;
@@ -62,7 +66,7 @@ classdef consfig
 
             % Calculate screen position for figure based on last figure position
             resolution = get(groot, 'Screensize');
-            y_margin = 50;
+            y_margin = 100;
             fig = get(groot,'CurrentFigure');
             if isempty(ishandle(fig)) % First fig
                 x0 = 1;
@@ -97,12 +101,26 @@ classdef consfig
                 subplot(rows, columns, plt);
                 set(groot, 'defaultAxesColorOrder', plt_obj.color_order, ...
                     'defaultAxesLineStyleOrder','-|--|:');
-                plot_fn(plt_obj.x, plt_obj.y);
+                plot_fn(plt_obj.x, plt_obj.y, 'lineWidth', plt_obj.options.lineWidth);
 
                 % Apply optional arguments:
                 title(plt_obj.options.title);
                 xlabel(plt_obj.options.xlabel);
                 ylabel(plt_obj.options.ylabel);
+                xticks(plt_obj.options.xticks);
+                yticks(plt_obj.options.yticks);
+                if ~isempty(plt_obj.options.stemLines)
+                    hold on;
+                    color_diff = size(plt_obj.color_order, 1) - size(plt_obj.y, 2);
+                    for cd = 1:color_diff
+                        plot(0);
+                    end
+                    for stemseries = 1:length(plt_obj.options.stemLines)
+                        stem(plt_obj.options.stemLines{stemseries}(:,1), ...
+                             plt_obj.options.stemLines{stemseries}(:,2), 'Marker', 'none');
+                    end
+                    hold off;
+                end
                 if isequal(size(plt_obj.options.xlim), [1, 2])
                     xlim(plt_obj.options.xlim);
                 else

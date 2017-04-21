@@ -22,6 +22,19 @@ columns = 1;
 
 save('2_row.mat')
 
+%% 3 Row plot
+clear; clc;
+width = 550;
+height = 500;
+units = 'pixels';
+menu_bar = 'none';
+plot_function = 'plot';
+rows = 3;
+columns = 1;
+
+save('3_row.mat')
+
+
 %% Color Order Distinct 4
 clear; clc;
 color_order = [
@@ -52,3 +65,20 @@ color_order = [
     233,83,20;
     243,149,18] ./ 255;
 save('red_range_4.mat');
+
+%% Color Order Purple range 3
+clear; clc;
+color_order = [
+    92,42,167;
+    116,104,220;
+    193,75,202] ./ 255;
+save('purple_range_3.mat');
+
+%% Color Order Spectrum range 4
+clear; clc;
+color_order = [
+    66,173,210;
+    101,168,81;
+    192,152,59;
+    189,79,61] ./ 255;
+save('spectrum_range_4.mat');
