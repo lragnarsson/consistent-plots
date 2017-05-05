@@ -1,7 +1,7 @@
 %% Default single plot config
 clear; clc;
 width = 550;
-height = 400;
+height = 500;
 units = 'pixels';
 menu_bar = 'figure';
 plot_function = 'plot';
@@ -10,10 +10,21 @@ columns = 1;
 
 save('default.mat')
 
+%% 1 Row Plot
+clear; clc;
+width = 750;
+height = 380;
+units = 'pixels';
+menu_bar = 'none';
+plot_function = 'plot';
+rows = 1;
+columns = 1;
+
+save('1_row.mat')
 %% 2 Row plot
 clear; clc;
-width = 550;
-height = 500;
+width = 750;
+height = 400;
 units = 'pixels';
 menu_bar = 'none';
 plot_function = 'plot';
@@ -24,8 +35,8 @@ save('2_row.mat')
 
 %% 3 Row plot
 clear; clc;
-width = 550;
-height = 500;
+width = 750;
+height = 600;
 units = 'pixels';
 menu_bar = 'none';
 plot_function = 'plot';
@@ -34,6 +45,17 @@ columns = 1;
 
 save('3_row.mat')
 
+%% 2x2 plot
+clear; clc;
+width = 750;
+height = 400;
+units = 'pixels';
+menu_bar = 'none';
+plot_function = 'plot';
+rows = 2;
+columns = 2;
+
+save('2x2.mat')
 
 %% Color Order Distinct 4
 clear; clc;
@@ -56,6 +78,19 @@ color_order = [
     195,64,163;
     219,56,146] ./ 255;
 save('blue_range_8.mat');
+
+%% Color Order Red Range 8
+clear; clc;
+color_order = [
+    230,60,78;
+    192,37,55;
+    230,38,47;
+    197,48,30;
+    236,90,57;
+    235,77,20;
+    229,126,32;
+    224,165,30] ./ 255;
+save('red_range_8.mat');
 
 %% Color Order Red range 4
 clear; clc;
